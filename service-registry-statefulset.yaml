@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: eureka
+spec:
+  selector:
+    matchLabels:
+      app: eureka
+  serviceName: "eureka"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: eureka
+    spec:
+      containers:
+      - name: eureka
+        image: glenn572/serviceregistry:0.0.1
+        ports:
+        - containerPort: 8761
+
+---
+#Headless Service  -To communicate inside
+apiVersion: v1
+kind: Service
+metadata:
+  name: eureka
+spec:
+  clusterIP:  None     #By Marking it as None, making it as Headless Service
+  selector:
+    app: eureka
+  ports:
+  - port: 8761
+    name: eureka
+
+---
+#NodePort -- External Users can connect to this service registry -Communicate outside
+apiVersion: v1
+kind: Service
+metadata:
+  name: eureka-lb
+spec:
+  type: NodePort
+  selector:
+    app: eureka
+  ports:
+  - port: 80
+    targetPort: 8761
+

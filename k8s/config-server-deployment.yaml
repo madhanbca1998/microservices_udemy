@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-server-app
+spec:
+  selector:
+    matchLabels:
+      app: config-server-app
+  template:
+    metadata:
+      labels:
+        app: config-server-app
+    spec:
+      containers:
+      - name: config-server-app
+        image: configserver:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 9296
+        
+
+---
+#HeadLess Service - To communicate inside
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-server-svc
+spec:
+  clusterIP:  None
+  selector:
+    app: config-server-svc
+  ports:
+  - port: 80
+    targetPort: 9296
+
+
