@@ -1,0 +1,13 @@
+global:
+  external_labels:
+    origin_prometheus: prometheus
+  scrape_interval: 5s
+scrape_configs:
+  - job_name: "coin-flip-api"
+    static_configs:
+      - targets: ["coin-flip-api:8080"]
+remote_write:
+- url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push
+  basic_auth:
+    username: 1180207
+    password: glc_eyJvIjoiOTQwNjg0IiwibiI6InN0YWNrLTczNjE0Ni1obS1yZWFkLXByb210b2dyYWZhbmFjbG91ZCIsImsiOiIzSDRDNEY1dU4yNFVyM3kzazhOdldZMHciLCJtIjp7InIiOiJwcm9kLXVzLWVhc3QtMCJ9fQ==
