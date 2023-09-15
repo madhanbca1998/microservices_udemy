@@ -1,7 +1,10 @@
 const client = require('prom-client');
 const express = require('express');
 const app = express();
-
+const { histogram } = require('./histogram');
+const { gauge } = require('./gauge');
+const { summary } = require('./summary');
+const { counter } = require('./counter');
 
 // Create a Registry to register the metrics
 const register = new client.Registry();
