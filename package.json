@@ -1,10 +1,10 @@
 {
-  "name": "node-application-monitoring-app",
+  "name": "coin-flip-api",
   "version": "1.0.0",
   "description": "Node.js Monitoring with Prometheus and Grafana",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
